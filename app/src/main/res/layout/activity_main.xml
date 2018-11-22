@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="163dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="241dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
@@ -32,8 +32,9 @@
         android:id="@+id/CPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="149dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword" />
@@ -44,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginBottom="69dp"
         android:text="Register" />
 
     <TextView
@@ -53,11 +54,30 @@
         android:layout_width="360dp"
         android:layout_height="38dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="94dp"
         android:layout_marginEnd="-370dp"
         android:layout_toStartOf="@+id/Register"
         android:text="PLEASE REGISTER"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="81dp"
+        android:layout_height="84dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="7dp"
+        app:srcCompat="@mipmap/logo" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="89dp"
+        android:layout_height="84dp"
+        android:layout_alignTop="@+id/imageView7"
+        android:layout_alignEnd="@+id/Pleasereg"
+        app:srcCompat="@mipmap/logo" />
+
 </RelativeLayout>
