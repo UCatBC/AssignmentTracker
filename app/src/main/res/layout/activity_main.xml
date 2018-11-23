@@ -28,17 +28,6 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/CPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="149dp"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword" />
-
     <Button
         android:id="@+id/Login"
         android:layout_width="wrap_content"
@@ -46,8 +35,19 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="144dp"
-        android:layout_marginBottom="69dp"
-        android:text="Register" />
+        android:layout_marginBottom="160dp"
+        android:text="Log-In" />
+
+    <Button
+        android:id="@+id/Login-Register"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="260dp"
+        android:layout_marginBottom="117dp"
+        android:text="Register"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/Pleasereg"
@@ -57,7 +57,7 @@
         android:layout_marginTop="94dp"
         android:layout_marginEnd="-370dp"
         android:layout_toStartOf="@+id/Login"
-        android:text="PLEASE REGISTER"
+        android:text="LOG-IN"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -81,3 +81,5 @@
         app:srcCompat="@mipmap/logo" />
 
 </RelativeLayout>
+
+
