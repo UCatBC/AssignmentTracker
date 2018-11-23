@@ -49,18 +49,15 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_PASSWORD + " TEXT"
             + " ) ";
 
-    public static final String SQL_TABLE_ASSIGNMENTS = "CREATE TABLE" + TABLE_ASSIGNMENTS
+    public static final String SQL_TABLE_ASSIGNMENTS = " CREATE TABLE " + TABLE_ASSIGNMENTS
             + "("
             + KEY_ID + " INTEGER PRIMARY KEY, "
-            + KEY_TYPE + " TEXT, "
+            //+ KEY_TYPE + " TEXT, "
             + KEY_MODULE + " TEXT, "
             + KEY_TITLE + " TEXT, "
-            + KEY_ISSUE_DATE + " DATE, "
-            + KEY_DEADLINE_DATE + " DATE, "
-            + KEY_WEIGHTING + " TEXT, "
-            + KEY_RESOURCES + " TEXT, "
-            + KEY_COMPLETED + " TEXT, "
-            + KEY_GRADE + " TEXT"
+            + KEY_ISSUE_DATE + " TEXT, "
+            + KEY_DEADLINE_DATE + " TEXT, "
+            + KEY_WEIGHTING + " TEXT "
             + " ) ";
 
 
@@ -72,6 +69,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
+        sqLiteDatabase.execSQL(SQL_TABLE_ASSIGNMENTS);
 
     }
 
@@ -79,7 +77,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
-        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
+        //sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
     }
 
     //using this method we can add users to user table
@@ -132,6 +130,43 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 new String[]{KEY_ID, KEY_USER_NAME, KEY_EMAIL, KEY_PASSWORD},//Selecting columns want to query
                 KEY_EMAIL + "=?",
                 new String[]{email},//Where clause
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
+            //if cursor has value then in user database there is user associated with this given email so return true
+            return true;
+        }
+
+        //if email does not exist return false
+        return false;
+    }
+
+    //using this method we can add assignments to user table
+    public void addAssignment(Assignment assignment) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+        //Put email in  @values
+        values.put(KEY_MODULE, assignment.module);
+        //Put password in  @values
+        values.put(KEY_TITLE, assignment.title);
+        values.put(KEY_ISSUE_DATE, assignment.issue);
+        values.put(KEY_DEADLINE_DATE, assignment.deadline);
+        values.put(KEY_WEIGHTING, assignment.weighting);
+
+        // insert row
+        long todo_id = db.insert(TABLE_ASSIGNMENTS, null, values);
+    }
+
+    public boolean isAssignmentExists(String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_ASSIGNMENTS,// Selecting Table
+                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_COMPLETED, KEY_GRADE},//Selecting columns want to query
+                KEY_TITLE + "=?",
+                new String[]{title},//Where clause
                 null, null, null);
 
         if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
