@@ -12,7 +12,7 @@ public class NewAssignment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_assignment);
         //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.spinner1);
+        Spinner dropdown = findViewById(R.id.editTextType);
 //create a list of items for the spinner.
         String[] items = new String[]{"1", "2", "three"};
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.

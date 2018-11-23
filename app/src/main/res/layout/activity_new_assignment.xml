@@ -7,7 +7,7 @@
     tools:context=".NewAssignment">
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextWeighting"
         android:layout_width="235dp"
         android:layout_height="37dp"
         android:layout_marginStart="9dp"
@@ -21,10 +21,10 @@
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDeadline" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editTextDeadline"
         android:layout_width="192dp"
         android:layout_height="37dp"
         android:layout_marginStart="12dp"
@@ -35,10 +35,10 @@
         android:inputType="textPersonName"
         android:text="Deadline Data"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintBottom_toTopOf="@+id/editTextWeighting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextIssue" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,13 +52,13 @@
         android:textAlignment="center"
         android:textSize="32dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/spinner1"
+        app:layout_constraintBottom_toTopOf="@+id/editTextType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/editTextType"
         android:layout_width="237dp"
         android:layout_height="37dp"
         android:layout_marginTop="15dp"
@@ -80,12 +80,12 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/spinner1"
+        app:layout_constraintEnd_toStartOf="@+id/editTextType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextModule"
         android:layout_width="235dp"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -96,13 +96,13 @@
         android:inputType="textPersonName"
         android:text="Enter Module"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextType" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextTitle"
         android:layout_width="235dp"
         android:layout_height="37dp"
         android:layout_marginStart="68dp"
@@ -114,10 +114,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextModule" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editTextIssue"
         android:layout_width="235dp"
         android:layout_height="37dp"
         android:layout_marginStart="7dp"
@@ -128,10 +128,10 @@
         android:inputType="textPersonName"
         android:text="Issue Date"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDeadline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
     <TextView
         android:id="@+id/textView7"
@@ -143,7 +143,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/editTextModule"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -158,7 +158,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/editText3"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -173,7 +173,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toStartOf="@+id/editText4"
+        app:layout_constraintEnd_toStartOf="@+id/editTextIssue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -189,9 +189,9 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/editText5"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDeadline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextIssue" />
 
     <TextView
         android:id="@+id/textView11"
@@ -205,7 +205,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toStartOf="@+id/editText6"
+        app:layout_constraintEnd_toStartOf="@+id/editTextWeighting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 

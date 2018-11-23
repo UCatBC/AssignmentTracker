@@ -18,18 +18,27 @@ public class SqliteHelper extends SQLiteOpenHelper {
     //TABLE NAME
     public static final String TABLE_USERS = "users";
 
+    public static final String TABLE_ASSIGNMENTS = "assignments";
+
     //TABLE USERS COLUMNS
     //ID COLUMN @primaryKey
     public static final String KEY_ID = "id";
-
     //COLUMN user name
     public static final String KEY_USER_NAME = "username";
-
     //COLUMN email
     public static final String KEY_EMAIL = "email";
-
     //COLUMN password
     public static final String KEY_PASSWORD = "password";
+
+    public static final String KEY_TYPE = "type";
+    public static final String KEY_MODULE = "module";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_ISSUE_DATE = "issue_date";
+    public static final String KEY_DEADLINE_DATE = "deadline_date";
+    public static final String KEY_WEIGHTING = "weighting";
+    public static final String KEY_RESOURCES = "resources";
+    public static final String KEY_COMPLETED = "completed";
+    public static final String KEY_GRADE = "grade";
 
     //SQL for creating users table
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS
@@ -38,6 +47,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_USER_NAME + " TEXT, "
             + KEY_EMAIL + " TEXT, "
             + KEY_PASSWORD + " TEXT"
+            + " ) ";
+
+    public static final String SQL_TABLE_ASSIGNMENTS = "CREATE TABLE" + TABLE_ASSIGNMENTS
+            + "("
+            + KEY_ID + " INTEGER PRIMARY KEY, "
+            + KEY_TYPE + " TEXT, "
+            + KEY_MODULE + " TEXT, "
+            + KEY_TITLE + " TEXT, "
+            + KEY_ISSUE_DATE + " DATE, "
+            + KEY_DEADLINE_DATE + " DATE, "
+            + KEY_WEIGHTING + " TEXT, "
+            + KEY_RESOURCES + " TEXT, "
+            + KEY_COMPLETED + " TEXT, "
+            + KEY_GRADE + " TEXT"
             + " ) ";
 
 
@@ -56,6 +79,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
     }
 
     //using this method we can add users to user table
