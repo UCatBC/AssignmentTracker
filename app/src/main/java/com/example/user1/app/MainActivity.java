@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         EditCPass = (EditText) findViewById(R.id.CPassword);
 
 
-        ButtonReg = (Button) findViewById(R.id.Register);
+        ButtonReg = (Button) findViewById(R.id.Login);
 
         ButtonReg.setOnClickListener(new View.OnClickListener() {
             @Override
