@@ -56,18 +56,18 @@ public class NewAssignment extends AppCompatActivity {
                     String Weighting = editTextWeighting.getText().toString();
 
                     //Check in the database is there any user associated with  this email
-                    //if (!sqliteHelper.isAssignmentExists(Title)) {
+                    if (!sqliteHelper.isAssignmentExists(Title)) {
 
                         //Assignment does not exist now add new user to database
                         sqliteHelper.addAssignment(new Assignment(Module, Title, Issue, Deadline, Weighting));
                         Snackbar.make(buttonCreate, "Assignment created successfully!", Snackbar.LENGTH_LONG).show();
-                Intent intent=new Intent(NewAssignment.this,CurrentAssignments.class);
-                startActivity(intent);
-                   // }else {
+                        Intent intent=new Intent(NewAssignment.this,CurrentAssignments.class);
+                        startActivity(intent);
+                    }else {
 
                         //Assignment exists with assignment input provided so show error assignment already exist
-                        //Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
-                    //}
+                        Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
+                    }
 
 
                 }
