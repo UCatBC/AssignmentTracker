@@ -1,5 +1,6 @@
 package com.example.user1.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -46,7 +47,7 @@ public class NewAssignment extends AppCompatActivity {
 
 
         /*LEAVE BELOW FUNCTION HERE, UPLOADS NEW ASSIGNMENT TO DATABASE BUT APP SHUTS DOWN AFTERWORDS*/
-        /*buttonCreate.setOnClickListener(new View.OnClickListener() {
+        buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -62,12 +63,8 @@ public class NewAssignment extends AppCompatActivity {
                         //Email does not exist now add new user to database
                         sqliteHelper.addAssignment(new Assignment(Module, Title, Issue, Deadline, Weighting));
                         Snackbar.make(buttonCreate, "Assignment created successfully!", Snackbar.LENGTH_LONG).show();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        }, Snackbar.LENGTH_LONG);
+                Intent intent=new Intent(NewAssignment.this,CurrentAssignments.class);
+                startActivity(intent);
                    // }else {
 
                         //Email exists with email input provided so show error user already exist
@@ -77,7 +74,7 @@ public class NewAssignment extends AppCompatActivity {
 
                 }
 
-        });*/
+        });
 
 
     }
