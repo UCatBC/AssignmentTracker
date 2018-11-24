@@ -1,7 +1,10 @@
 package com.example.user1.app;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +26,7 @@ public class NewAssignment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_assignment);
+        sqliteHelper = new SqliteHelper(this);
         buttonCreate = (Button)findViewById(R.id.button);
         editTextModule = (EditText)findViewById(R.id.editTextModule);
         editTextTitle = (EditText)findViewById(R.id.editTextTitle);
@@ -41,7 +45,7 @@ public class NewAssignment extends AppCompatActivity {
         dropdown.setAdapter(adapter);
 
 
-        /*LEAVE BELOW FUNCTION HERE, STRUGGLING GETTING IT TO CREATE THE DATABASE,WILL SORT THIS WEEKEND AT SOMEPOINT*/
+        /*LEAVE BELOW FUNCTION HERE, UPLOADS NEW ASSIGNMENT TO DATABASE BUT APP SHUTS DOWN AFTERWORDS*/
         /*buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +57,7 @@ public class NewAssignment extends AppCompatActivity {
                     String Weighting = editTextWeighting.getText().toString();
 
                     //Check in the database is there any user associated with  this email
-                    if (!sqliteHelper.isAssignmentExists(Title)) {
+                    //if (!sqliteHelper.isAssignmentExists(Title)) {
 
                         //Email does not exist now add new user to database
                         sqliteHelper.addAssignment(new Assignment(Module, Title, Issue, Deadline, Weighting));
@@ -64,11 +68,11 @@ public class NewAssignment extends AppCompatActivity {
                                 finish();
                             }
                         }, Snackbar.LENGTH_LONG);
-                    }else {
+                   // }else {
 
                         //Email exists with email input provided so show error user already exist
-                        Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
-                    }
+                        //Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
+                    //}
 
 
                 }

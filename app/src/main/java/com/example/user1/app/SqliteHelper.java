@@ -77,7 +77,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
-        //sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
+        onCreate(sqLiteDatabase);
     }
 
     //using this method we can add users to user table
@@ -142,7 +143,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
     //using this method we can add assignments to user table
-    public void addAssignment(Assignment assignment) {
+    public boolean addAssignment(Assignment assignment) {
 
         //get writable database
         SQLiteDatabase db = this.getWritableDatabase();
@@ -158,7 +159,11 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_WEIGHTING, assignment.weighting);
 
         // insert row
-        long todo_id = db.insert(TABLE_ASSIGNMENTS, null, values);
+        long result = db.insert(TABLE_ASSIGNMENTS, null, values);
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
 
     public boolean isAssignmentExists(String title) {
