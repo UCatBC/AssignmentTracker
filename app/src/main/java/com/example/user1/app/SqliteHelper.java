@@ -52,12 +52,15 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String SQL_TABLE_ASSIGNMENTS = " CREATE TABLE " + TABLE_ASSIGNMENTS
             + "("
             + KEY_ID + " INTEGER PRIMARY KEY, "
-            //+ KEY_TYPE + " TEXT, "
+            + KEY_TYPE + " TEXT, "
             + KEY_MODULE + " TEXT, "
             + KEY_TITLE + " TEXT, "
             + KEY_ISSUE_DATE + " TEXT, "
             + KEY_DEADLINE_DATE + " TEXT, "
-            + KEY_WEIGHTING + " TEXT "
+            + KEY_WEIGHTING + " TEXT, "
+            + KEY_RESOURCES + " TEXT, "
+            + KEY_GRADE + " TEXT, "
+            + KEY_COMPLETED + " TEXT"
             + " ) ";
 
 
@@ -175,11 +178,11 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 null, null, null);
 
         if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
-            //if cursor has value then in user database there is user associated with this given email so return true
+            //if cursor has value then in user database there is user associated with this given assignment so return true
             return true;
         }
 
-        //if email does not exist return false
+        //if assignment does not exist return false
         return false;
     }
 }
