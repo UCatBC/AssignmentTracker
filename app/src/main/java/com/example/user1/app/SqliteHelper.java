@@ -172,7 +172,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public boolean isAssignmentExists(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ASSIGNMENTS,// Selecting Table
-                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_COMPLETED, KEY_GRADE},//Selecting columns want to query
+                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED},//Selecting columns want to query
                 KEY_TITLE + "=?",
                 new String[]{title},//Where clause
                 null, null, null);
