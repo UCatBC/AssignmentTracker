@@ -35,15 +35,19 @@ public class NewAssignment extends AppCompatActivity {
         editTextDeadline = (EditText)findViewById(R.id.editTextDeadline);
         editTextWeighting = (EditText)findViewById(R.id.editTextWeighting);
 
-        //get the spinner from the xml.
+        //for type
         dropdown = findViewById(R.id.editTextType);
-        //create a list of items for the spinner.
         String[] items = new String[]{"Assignment", "Task"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
+
+        //for resources
+        dropdown = findViewById(R.id.editTextType1);
+        String[] items1 = new String[]{"1", "2"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
+        dropdown.setAdapter(adapter1);
+
 
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +72,8 @@ public class NewAssignment extends AppCompatActivity {
                         //Assignment exists with assignment input provided so show error assignment already exist
                         Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
                     }
+
+
 
 
                 }
