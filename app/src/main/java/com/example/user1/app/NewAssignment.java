@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class NewAssignment extends AppCompatActivity {
@@ -27,11 +28,14 @@ public class NewAssignment extends AppCompatActivity {
 
     Button buttonCreate;
 
+    TextView textView;
+
     SqliteHelper sqliteHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_assignment);
+        //textView = (TextView) findViewById(R.id.text);
         sqliteHelper = new SqliteHelper(this);
         buttonCreate = (Button)findViewById(R.id.button);
         editTextModule = (EditText)findViewById(R.id.editTextModule);
@@ -52,6 +56,7 @@ public class NewAssignment extends AppCompatActivity {
         String[] items1 = new String[]{"1", "2"};
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
         dropdown.setAdapter(adapter1);
+
 
 
         buttonCreate.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +90,6 @@ public class NewAssignment extends AppCompatActivity {
                     }*/
 
 
-
                 }
 
         });
@@ -93,5 +97,21 @@ public class NewAssignment extends AppCompatActivity {
 
     }
 
+    public void page1change(View View)
+    {
+        String button_text;
+        button_text =((Button)View).getText().toString();
+        if(button_text.equals("Button"))
+        {
+            Intent hello1 = new Intent(this,CurrentAssignments.class);
+            startActivity(hello1);
+        }
+        else if (button_text.equals("Button1"))
+        {
+            Intent hello2 = new Intent(this,CurrentAssignments.class);
+            startActivity(hello2);
+
+        }
+    }
 
     }
