@@ -8,6 +8,8 @@
     tools:context=".NewAssignment">
 
 
+
+
     <EditText
         android:id="@+id/editTextWeighting"
         android:layout_width="180dp"

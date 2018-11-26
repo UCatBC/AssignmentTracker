@@ -1,15 +1,20 @@
 package com.example.user1.app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
 
 public class NewAssignment extends AppCompatActivity {
 
@@ -78,7 +83,6 @@ public class NewAssignment extends AppCompatActivity {
                         //Assignment exists with assignment input provided so show error assignment already exist
                         Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
                     }*/
-
 
 
 
