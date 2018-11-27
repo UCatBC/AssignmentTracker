@@ -101,16 +101,16 @@ public class NewAssignment extends AppCompatActivity {
     {
         String button_text;
         button_text =((Button)View).getText().toString();
-        if(button_text.equals("Button"))
-        {
-            Intent hello1 = new Intent(this,CurrentAssignments.class);
-            startActivity(hello1);
-        }
-        else if (button_text.equals("Button1"))
+
+        if (button_text.equals("Current"))
         {
             Intent hello2 = new Intent(this,CurrentAssignments.class);
             startActivity(hello2);
-
+        }
+        else if (button_text.equals("Expired"))
+        {
+            Intent hello2 = new Intent(this,ExpiredAssignments.class);
+            startActivity(hello2);
         }
     }
 

@@ -24,7 +24,8 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewAssignment" />
-        <activity android:name=".CurrentAssignments"></activity>
+        <activity android:name=".CurrentAssignments" />
+        <activity android:name=".ExpiredAssignments"></activity>
     </application>
 
 </manifest>
