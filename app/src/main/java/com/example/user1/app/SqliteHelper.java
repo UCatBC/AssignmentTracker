@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class SqliteHelper extends SQLiteOpenHelper {
 
@@ -184,5 +187,19 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
         //if assignment does not exist return false
         return false;
+    }
+
+    public ArrayList<HashMap<String, String>> GetCurrentAssignments(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<HashMap<String, String>> assignmentList = new ArrayList<>();
+        String query = "SELECT title, deadline_date FROM " + TABLE_ASSIGNMENTS;
+        Cursor cursor = db.rawQuery(query, null);
+        while(cursor.moveToNext()){
+            HashMap<String, String> assignment = new HashMap<>();
+            assignment.put("title", cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            assignment.put("deadline_date", cursor.getString(cursor.getColumnIndex(KEY_DEADLINE_DATE)));
+            assignmentList.add(assignment);
+        }
+        return assignmentList;
     }
 }
