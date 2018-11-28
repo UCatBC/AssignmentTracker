@@ -31,13 +31,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="48dp"
         android:dividerHeight="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/expired"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/expired"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -47,13 +47,13 @@
         android:text="Expired"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/current"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.869" />
 
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/current"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -62,13 +62,13 @@
         android:onClick="page1change"
         android:text="Current"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/expired"
+        app:layout_constraintStart_toEndOf="@+id/create"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.826" />/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/create"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginTop="391dp"
@@ -76,7 +76,7 @@
         android:onClick="page1change"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/current"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.826" />

@@ -182,7 +182,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextType1" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/expired"
         android:layout_width="129dp"
         android:layout_height="58dp"
         android:layout_marginStart="1dp"
@@ -191,13 +191,13 @@
         android:text="Expired"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/current"
         app:layout_constraintTop_toBottomOf="@+id/editTextType1"
         app:layout_constraintVertical_bias="0.802" />
 
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/current"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -206,20 +206,20 @@
         android:onClick="page1change"
         android:text="Current"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/expired"
+        app:layout_constraintStart_toEndOf="@+id/create"
         app:layout_constraintTop_toBottomOf="@+id/delete"
         app:layout_constraintVertical_bias="0.807" />/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/create"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="1dp"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/current"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.809" />

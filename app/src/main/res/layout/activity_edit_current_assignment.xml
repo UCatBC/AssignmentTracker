@@ -22,13 +22,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextDeadline" />
 
     <EditText
-        android:id="@+id/editTextWeighting2"
+        android:id="@+id/editTextGrade"
         android:layout_width="200dp"
         android:layout_height="33dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="enter grade"
+        android:hint="add notes"
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="12dp"
-        android:text="Enter New Assignment"
+        android:text="Edit Current Assignment"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -184,14 +184,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="33dp"
-        android:text="Grade"
+        android:layout_marginBottom="134dp"
+        android:text="Notes"
         android:textSize="14sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/create"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -200,7 +202,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
+        android:layout_marginBottom="13dp"
         android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/expired"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
@@ -211,14 +215,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="13dp"
         android:text="Update"
+        app:layout_constraintBottom_toTopOf="@+id/current"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.343"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCompleted" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/expired"
         android:layout_width="129dp"
         android:layout_height="52dp"
         android:layout_marginStart="1dp"
@@ -226,13 +232,13 @@
         android:text="Expired"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/current"
         app:layout_constraintTop_toBottomOf="@+id/editTextType1"
         app:layout_constraintVertical_bias="0.895" />
 
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/current"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -240,18 +246,18 @@
         android:layout_marginBottom="4dp"
         android:text="Current"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button4" />/>
+        app:layout_constraintEnd_toStartOf="@+id/expired"
+        app:layout_constraintStart_toEndOf="@+id/create" />/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/create"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="1dp"
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/current"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.964" />
@@ -284,13 +290,17 @@
         tools:text="@tools:sample/date/ddmmyy" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="183dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="128dp"
+        android:layout_marginBottom="20dp"
         android:text="Completed"
+        app:layout_constraintBottom_toTopOf="@+id/delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextWeighting2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGrade" />
 
 </android.support.constraint.ConstraintLayout>

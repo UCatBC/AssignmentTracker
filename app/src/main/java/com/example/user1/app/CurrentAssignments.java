@@ -32,7 +32,13 @@ public class CurrentAssignments extends AppCompatActivity {
 
     }
 
+    public void viewAssignment (View view) {
+        String button_text;
+        button_text = ((Button)view).getText().toString();
 
+        Intent assignment = new Intent(this, EditCurrentAssignment.class);
+        startActivity(assignment);
+    }
 
     public void page1change(View View)
     {
