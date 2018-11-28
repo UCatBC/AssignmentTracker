@@ -37,7 +37,7 @@ public class NewAssignment extends AppCompatActivity {
         editTextTitle = (EditText)findViewById(R.id.editTextTitle);
         editTextIssue = (EditText)findViewById(R.id.editTextIssue);
         editTextDeadline = (EditText)findViewById(R.id.editTextDeadline);
-        editTextWeighting = (EditText)findViewById(R.id.editTextWeighting);
+        editTextWeighting = (EditText)findViewById(R.id.editTextGrade);
 
         //for type
         dropdown = findViewById(R.id.editTextType);
