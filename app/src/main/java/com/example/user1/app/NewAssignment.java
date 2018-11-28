@@ -1,14 +1,9 @@
 package com.example.user1.app;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,7 +32,7 @@ public class NewAssignment extends AppCompatActivity {
         setContentView(R.layout.activity_new_assignment);
         //textView = (TextView) findViewById(R.id.text);
         sqliteHelper = new SqliteHelper(this);
-        buttonCreate = (Button)findViewById(R.id.button);
+        buttonCreate = (Button)findViewById(R.id.delete);
         editTextModule = (EditText)findViewById(R.id.editTextModule);
         editTextTitle = (EditText)findViewById(R.id.editTextTitle);
         editTextIssue = (EditText)findViewById(R.id.editTextIssue);

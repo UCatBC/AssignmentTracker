@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".NewAssignment"
+    tools:context=".EditCurrentAssignment"
     tools:layout_editor_absoluteY="81dp">
 
 
@@ -21,6 +20,19 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDeadline" />
+
+    <EditText
+        android:id="@+id/editTextWeighting2"
+        android:layout_width="200dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="enter grade"
+        android:inputType="textPersonName"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextType1" />
 
     <TextView
         android:id="@+id/textView"
@@ -171,29 +183,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="33dp"
+        android:text="Grade"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
     <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Create"
+        android:layout_marginTop="116dp"
+        android:text="Delete"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextType1" />
 
     <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="129dp"
-        android:layout_height="58dp"
+        android:layout_height="52dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="100dp"
-        android:onClick="page1change"
         android:text="Expired"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/editTextType1"
-        app:layout_constraintVertical_bias="0.802" />
+        app:layout_constraintVertical_bias="0.895" />
 
 
     <Button
@@ -201,15 +236,12 @@
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="26dp"
         android:layout_marginEnd="1dp"
-        android:onClick="page1change"
+        android:layout_marginBottom="4dp"
         android:text="Current"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/delete"
-        app:layout_constraintVertical_bias="0.807" />/>
+        app:layout_constraintStart_toEndOf="@+id/button4" />/>
 
     <Button
         android:id="@+id/button4"
@@ -222,7 +254,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintVertical_bias="0.964" />
 
     <EditText
         android:id="@+id/editTextIssue"
@@ -250,5 +282,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextIssue"
         tools:text="@tools:sample/date/ddmmyy" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="128dp"
+        android:text="Completed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextWeighting2" />
 
 </android.support.constraint.ConstraintLayout>
