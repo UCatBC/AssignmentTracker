@@ -39,7 +39,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="12dp"
-        android:text="Enter New Assignment"
+        android:text="Edit Expired Assignment"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
