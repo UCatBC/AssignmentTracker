@@ -6,16 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class EditCurrentAssignment extends AppCompatActivity {
 
     Spinner dropdown;
+    EditText title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_current_assignment);
+        title = (EditText)findViewById(R.id.editTextTitle);
 
+        SqliteHelper db = new SqliteHelper(this);
         //for type
         dropdown = findViewById(R.id.editTextType);
         String[] items = new String[]{"Assignment", "Task"};
@@ -28,6 +34,14 @@ public class EditCurrentAssignment extends AppCompatActivity {
         String[] items1 = new String[]{"1", "2"};
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
         dropdown.setAdapter(adapter1);
+
+        Intent intent = getIntent();
+        String title1 = intent.getStringExtra("TITLE");
+
+        //ArrayList<String> data = db.getOneAssignment(title1);
+
+
+        title.setText(title1);
 
     }
 

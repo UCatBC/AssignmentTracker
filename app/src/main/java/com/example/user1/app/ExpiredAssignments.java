@@ -20,11 +20,11 @@ public class ExpiredAssignments extends AppCompatActivity {
         setContentView(R.layout.activity_expired_assignments);
 
         SqliteHelper db = new SqliteHelper(this);
-        ArrayList<HashMap<String, String>> assignmentList = db.GetCurrentAssignments();
+        //ArrayList<HashMap<String, String>> assignmentList = db.GetCurrentAssignments();
         ListView lv = (ListView)findViewById(R.id.assignment_list);
-        ListAdapter adapter = new SimpleAdapter(ExpiredAssignments.this, assignmentList,
-                R.layout.list_row,new String[]{"title","deadline"},new int[]{R.id.title,R.id.deadline_date});
-        lv.setAdapter(adapter);
+        //ListAdapter adapter = new SimpleAdapter(ExpiredAssignments.this, assignmentList,
+               // R.layout.list_row,new String[]{"title","deadline"},new int[]{R.id.title,R.id.deadline_date});
+       // lv.setAdapter(adapter);
     }
 
     public void viewAssignment (View view) {

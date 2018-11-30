@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -189,17 +190,31 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public ArrayList<HashMap<String, String>> GetCurrentAssignments(){
+    public ArrayList<String> getAllAssignments() {
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<HashMap<String, String>> assignmentList = new ArrayList<>();
-        String query = "SELECT title, deadline_date FROM " + TABLE_ASSIGNMENTS;
-        Cursor cursor = db.rawQuery(query, null);
-        while(cursor.moveToNext()){
-            HashMap<String, String> assignment = new HashMap<>();
-            assignment.put("title", cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
-            assignment.put("deadline_date", cursor.getString(cursor.getColumnIndex(KEY_DEADLINE_DATE)));
-            assignmentList.add(assignment);
+        ArrayList<String> listItems = new ArrayList<String>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ASSIGNMENTS, new String[]{});
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            cursor.moveToNext();
         }
-        return assignmentList;
+
+        return listItems;
+    }
+
+    public ArrayList<String> getOneAssignment(String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> listItems = new ArrayList<String>();
+        Cursor cursor = db.rawQuery("SELECT title, module, deadline_date, weighting FROM " + TABLE_ASSIGNMENTS + " WHERE title = " + title, new String[]{});
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_MODULE)));
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_DEADLINE_DATE)));
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_WEIGHTING)));
+        }
+        return listItems;
     }
 }
