@@ -200,6 +200,7 @@
 
     <Button
         android:id="@+id/expired"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="58dp"
         android:layout_marginStart="1dp"
@@ -210,11 +211,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/current"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.78" />
 
 
     <Button
         android:id="@+id/current"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -230,6 +233,7 @@
 
     <Button
         android:id="@+id/create"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginTop="106dp"
