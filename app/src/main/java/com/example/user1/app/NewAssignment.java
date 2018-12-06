@@ -137,23 +137,34 @@ public class NewAssignment extends AppCompatActivity {
                            e.printStackTrace();
                        }
 
+
+
+
+
+
+
                        Long time = new GregorianCalendar().getTimeInMillis()+5*1000;
+                       
+                       /*Long alarm1 = calEnd.getTimeInMillis()-36*60*60*1000;
+                       Long alarm2 = calEnd.getTimeInMillis()-60*60*60*1000;
+                       Long alarm3 = calEnd.getTimeInMillis()-170*60*60*1000;  */
                        Intent intentAlarm = new Intent(NewAssignment.this, AlarmReciever.class);
                        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                           alarmManager.set(AlarmManager.RTC_WAKEUP,time, PendingIntent.getBroadcast(NewAssignment.this,1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
-                                      Toast.makeText(NewAssignment.this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
-
-                     Calendar calStart = new GregorianCalendar();
-                       Calendar calEnd = new GregorianCalendar();
+                                      Toast.makeText(NewAssignment.this, "Alarm Scheduled for " + time, Toast.LENGTH_LONG).show();
 
 
-                       calStart.setTime(editStartDate);
-                       calEnd.setTime(editEndDate);
+                        Calendar calStart = new GregorianCalendar();
+                        Calendar calEnd = new GregorianCalendar();
+
+                        calStart.setTime(editStartDate);
+                        calEnd.setTime(editEndDate);
+
                        Intent intent1 = new Intent(Intent.ACTION_INSERT)
                                //.setData(CalendarContract.Events.CONTENT_URI)
                                .setType("vnd.android.cursor.item/event")
                                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calStart.getTimeInMillis())
-                               .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calStart.getTimeInMillis())
+                               .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calEnd.getTimeInMillis())
                                .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
                                .putExtra(CalendarContract.Events.TITLE, "Yoga")
                                .putExtra(CalendarContract.Events.DESCRIPTION, "Group class")
