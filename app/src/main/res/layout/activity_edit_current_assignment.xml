@@ -186,18 +186,19 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:layout_marginBottom="13dp"
+        android:onClick="delete"
         android:text="Delete"
         app:layout_constraintBottom_toTopOf="@+id/expired"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.749"
+        app:layout_constraintHorizontal_bias="0.705"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextType1"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/update"
@@ -208,10 +209,10 @@
         android:text="Update"
         app:layout_constraintBottom_toTopOf="@+id/current"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxCompleted"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/expired"
@@ -256,7 +257,7 @@
         app:layout_constraintVertical_bias="0.964" />
 
     <EditText
-        android:id="@+id/editTextIssue"
+        android:id="@+id/editTextCompleted"
         android:layout_width="200dp"
         android:layout_height="35dp"
         android:layout_marginTop="7dp"
@@ -266,7 +267,8 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
-        tools:text="@tools:sample/date/mmddyy" />
+        tools:text="@tools:sample/date/mmddyy"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/editTextDeadline"
@@ -279,7 +281,7 @@
         android:inputType="date"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIssue"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCompleted"
         tools:text="@tools:sample/date/ddmmyy" />
 
     <CheckBox
@@ -290,7 +292,7 @@
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="20dp"
         android:text="Completed"
-        app:layout_constraintBottom_toTopOf="@+id/delete"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDelete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -7,14 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.Array;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "data.db";
+    public static final String DATABASE_NAME = "datanew.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 1;
@@ -85,7 +87,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //drop table to create new one if database version updated
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ASSIGNMENTS);
-        onCreate(sqLiteDatabase);
+        this.onCreate(sqLiteDatabase);
     }
 
     //using this method we can add users to user table
@@ -150,7 +152,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
     //using this method we can add assignments to user table
-    public boolean addAssignment(Assignment assignment) {
+    public long addAssignment(Assignment assignment) {
 
         //get writable database
         SQLiteDatabase db = this.getWritableDatabase();
@@ -158,25 +160,25 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //create content values to insert
         ContentValues values = new ContentValues();
         //Put email in  @values
-        values.put(KEY_MODULE, assignment.module);
+        values.put(KEY_TYPE, assignment.getType());
+        values.put(KEY_MODULE, assignment.getModule());
         //Put password in  @values
-        values.put(KEY_TITLE, assignment.title);
-        values.put(KEY_ISSUE_DATE, assignment.issue);
-        values.put(KEY_DEADLINE_DATE, assignment.deadline);
-        values.put(KEY_WEIGHTING, assignment.weighting);
+        values.put(KEY_TITLE, assignment.getTitle());
+        values.put(KEY_ISSUE_DATE, assignment.getIssue());
+        values.put(KEY_DEADLINE_DATE, assignment.getDeadline());
+        values.put(KEY_WEIGHTING, assignment.getWeighting());
+        values.put(KEY_COMPLETED, "No");
 
         // insert row
         long result = db.insert(TABLE_ASSIGNMENTS, null, values);
-        if(result == -1)
-            return false;
-        else
-            return true;
+        db.close();
+        return result;
     }
 
     public boolean isAssignmentExists(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ASSIGNMENTS,// Selecting Table
-                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED},//Selecting columns want to query
+                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING}, //KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED},//Selecting columns want to query
                 KEY_TITLE + "=?",
                 new String[]{title},//Where clause
                 null, null, null);
@@ -194,7 +196,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> listItems = new ArrayList<String>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ASSIGNMENTS, new String[]{});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_ASSIGNMENTS, null);//new String[]{});
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
             listItems.add(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
@@ -204,17 +206,78 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return listItems;
     }
 
-    public ArrayList<String> getOneAssignment(String title) {
+     public Assignment getOneAssignment(String title) {
+        Assignment listItems = new Assignment();
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<String> listItems = new ArrayList<String>();
-        Cursor cursor = db.rawQuery("SELECT title, module, deadline_date, weighting FROM " + TABLE_ASSIGNMENTS + " WHERE title = " + title, new String[]{});
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
-            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
-            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_MODULE)));
-            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_DEADLINE_DATE)));
-            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_WEIGHTING)));
+
+        //String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED};
+        String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_GRADE};
+        String selection = KEY_TITLE + " = ?";
+        String [] selectionArgs = { title };
+
+        Cursor cursor = db.query(TABLE_ASSIGNMENTS, columns, selection, selectionArgs, null, null, null);
+
+        if(null != cursor) {
+
+            cursor.moveToFirst();
+
+            listItems.setType(cursor.getString(0));
+            listItems.setModule(cursor.getString(1));
+            listItems.setTitle(cursor.getString(2));
+            listItems.setIssue(cursor.getString(3));
+            listItems.setDeadline(cursor.getString(4));
+            listItems.setWeighting(cursor.getString(5));
+            //listItems.setResources(cursor.getString(7));
+            listItems.setGrade(cursor.getString(6));
+            //listItems.setCompleted(cursor.getString(9));
         }
+        db.close();
+
         return listItems;
+    }
+
+
+
+    public void deleteAssignment(String title) {
+        String assignment [] = { title };
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ASSIGNMENTS, KEY_TITLE + " = ?", assignment);
+        db.close();
+    }
+
+    public long updateCurrentAssignment(Assignment assignment) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+        //Put email in  @values
+        values.put(KEY_MODULE, assignment.getModule());
+        //Put password in  @values
+        values.put(KEY_TITLE, assignment.getTitle());
+        //values.put(KEY_ISSUE_DATE, assignment.getIssue());
+        values.put(KEY_DEADLINE_DATE, assignment.getDeadline());
+        values.put(KEY_WEIGHTING, assignment.getWeighting());
+        //values.put(KEY_GRADE, assignment.getGrade());
+        //values.put(KEY_COMPLETED, "No");
+
+        // insert row
+       return db.update(TABLE_ASSIGNMENTS, values, KEY_TITLE +
+        " = ?", new String[] { String.valueOf(assignment.getTitle()) });
+    }
+
+    public long updateExpiredAssignment(Assignment assignment) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+        values.put(KEY_GRADE, assignment.getGrade());
+
+        // insert row
+        return db.update(TABLE_ASSIGNMENTS, values, KEY_TITLE +
+                " = ?", new String[] { String.valueOf(assignment.getTitle()) });
     }
 }

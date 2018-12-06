@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".NewAssignment"
+    tools:context=".EditExpiredAssignment"
     tools:layout_editor_absoluteY="81dp">
 
 
@@ -30,7 +30,8 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIssue" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCompleted"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/textView"
@@ -71,7 +72,8 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextType" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextType"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/editTextType"
@@ -83,7 +85,8 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/editTextTitle"
@@ -95,7 +98,8 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextModule" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextModule"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/textView7"
@@ -173,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -184,7 +188,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
-        android:id="@+id/delete2"
+        android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -221,7 +225,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/expired"
         app:layout_constraintStart_toEndOf="@+id/create"
-        app:layout_constraintTop_toBottomOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete"
         app:layout_constraintVertical_bias="0.807" />/>
 
     <Button
@@ -238,7 +242,7 @@
         app:layout_constraintVertical_bias="0.809" />
 
     <EditText
-        android:id="@+id/editTextIssue"
+        android:id="@+id/editTextCompleted"
         android:layout_width="200dp"
         android:layout_height="35dp"
         android:layout_marginTop="7dp"
@@ -248,7 +252,8 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
-        tools:text="@tools:sample/date/mmddyy" />
+        tools:text="@tools:sample/date/mmddyy"
+        android:focusable="false"/>
 
     <Button
         android:id="@+id/button"

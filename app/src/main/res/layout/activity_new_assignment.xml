@@ -172,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -208,7 +208,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/expired"
         app:layout_constraintStart_toEndOf="@+id/create"
-        app:layout_constraintTop_toBottomOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete"
         app:layout_constraintVertical_bias="0.807" />/>
 
     <Button
@@ -225,7 +225,7 @@
         app:layout_constraintVertical_bias="0.809" />
 
     <EditText
-        android:id="@+id/editTextIssue"
+        android:id="@+id/editTextCompleted"
         android:layout_width="200dp"
         android:layout_height="35dp"
         android:layout_marginTop="7dp"
@@ -235,7 +235,8 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
-        tools:text="@tools:sample/date/mmddyy" />
+        tools:text="@tools:sample/date/mmddyy"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/editTextDeadline"
@@ -248,7 +249,7 @@
         android:inputType="date"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIssue"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCompleted"
         tools:text="@tools:sample/date/ddmmyy" />
 
 </android.support.constraint.ConstraintLayout>
