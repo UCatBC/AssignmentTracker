@@ -36,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"></ListView>
     <Button
         android:id="@+id/expired"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -52,6 +53,7 @@
 
     <Button
         android:id="@+id/current"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="1dp"
@@ -67,6 +69,7 @@
 
     <Button
         android:id="@+id/create"
+        android:background="@color/colorPrimary"
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginTop="391dp"
