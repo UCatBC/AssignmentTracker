@@ -1,10 +1,17 @@
 package com.example.user1.app;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.CalendarContract;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -51,6 +59,7 @@ public class NewAssignment extends AppCompatActivity {
         editTextIssue = (EditText)findViewById(R.id.editTextCompleted);
         editTextDeadline = (EditText)findViewById(R.id.editTextDeadline);
         editTextWeighting = (EditText)findViewById(R.id.editTextGrade);
+
 
         Date today = Calendar.getInstance().getTime();
         formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -113,7 +122,8 @@ public class NewAssignment extends AppCompatActivity {
                                 finish();
                             }
                         }, Snackbar.LENGTH_LONG);
-                        Intent intent=new Intent(NewAssignment.this,CurrentAssignments.class);
+
+
 
                         String startDate = editTextIssue.getText().toString();
                         String endDate = editTextDeadline.getText().toString();
@@ -127,23 +137,37 @@ public class NewAssignment extends AppCompatActivity {
                            e.printStackTrace();
                        }
 
-                       Calendar calStart = new GregorianCalendar();
+                       Long time = new GregorianCalendar().getTimeInMillis()+5*1000;
+                       Intent intentAlarm = new Intent(NewAssignment.this, AlarmReciever.class);
+                       AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                          alarmManager.set(AlarmManager.RTC_WAKEUP,time, PendingIntent.getBroadcast(NewAssignment.this,1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+                                      Toast.makeText(NewAssignment.this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
+
+                     Calendar calStart = new GregorianCalendar();
                        Calendar calEnd = new GregorianCalendar();
 
 
                        calStart.setTime(editStartDate);
                        calEnd.setTime(editEndDate);
                        Intent intent1 = new Intent(Intent.ACTION_INSERT)
-                               .setData(CalendarContract.Events.CONTENT_URI)
+                               //.setData(CalendarContract.Events.CONTENT_URI)
+                               .setType("vnd.android.cursor.item/event")
                                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calStart.getTimeInMillis())
-                               .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calEnd.getTimeInMillis())
+                               .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calStart.getTimeInMillis())
                                .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
                                .putExtra(CalendarContract.Events.TITLE, "Yoga")
                                .putExtra(CalendarContract.Events.DESCRIPTION, "Group class")
                                .putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
                                .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
-                               .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
+                               .putExtra(CalendarContract.Events.STATUS, 1)
+                               .putExtra(CalendarContract.Events.VISIBLE, 0)
+                               .putExtra(CalendarContract.Events.HAS_ALARM, true)
+                               .putExtra(CalendarContract.Events.ALLOWED_REMINDERS, "METHOD_DEFAULT")
+                               .putExtra(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
+                               .putExtra(CalendarContract.Reminders.MINUTES, 20);
+
                        startActivity(intent1);
+                       Intent intent=new Intent(NewAssignment.this,CurrentAssignments.class); 
                     }else {
 
                         //Assignment exists with assignment input provided so show error assignment already exist
@@ -157,6 +181,10 @@ public class NewAssignment extends AppCompatActivity {
 
 
     }
+
+
+
+
 
     public void page1change(View View)
     {
@@ -174,5 +202,7 @@ public class NewAssignment extends AppCompatActivity {
             startActivity(hello2);
         }
     }
+
+
 
     }

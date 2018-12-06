@@ -16,7 +16,7 @@ import java.util.List;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "datanew.db";
+    public static final String DATABASE_NAME = "data1.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 1;
@@ -45,6 +45,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String KEY_RESOURCES = "resources";
     public static final String KEY_COMPLETED = "completed";
     public static final String KEY_GRADE = "grade";
+    public static final String KEY_NOTES_IMAGE = "notes_text";
+    public static final String KEY_NOTES_TEXT = "notes_image";
 
     //SQL for creating users table
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS
@@ -66,7 +68,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_WEIGHTING + " TEXT, "
             + KEY_RESOURCES + " TEXT, "
             + KEY_GRADE + " TEXT, "
-            + KEY_COMPLETED + " TEXT"
+            + KEY_COMPLETED + " TEXT, "
+            + KEY_NOTES_TEXT + " TEXT, "
+            + KEY_NOTES_IMAGE + " TEXT"
             + " ) ";
 
 
@@ -210,7 +214,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
         Assignment listItems = new Assignment();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        //String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED};
         String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_GRADE};
         String selection = KEY_TITLE + " = ?";
         String [] selectionArgs = { title };

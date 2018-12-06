@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user1.app">
 
+    <uses-sdk android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    <!-- permission required to use Alarm Manager -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <!-- permission required to Send SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_round"
@@ -28,6 +35,8 @@
         <activity android:name=".ExpiredAssignments" />
         <activity android:name=".EditCurrentAssignment" />
         <activity android:name=".EditExpiredAssignment"></activity>
+
+        <receiver android:name=".AlarmReciever"/>
     </application>
 
 </manifest>
