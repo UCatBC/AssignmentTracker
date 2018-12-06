@@ -243,14 +243,30 @@
 
     <EditText
         android:id="@+id/editTextDeadline"
-        android:layout_width="200dp"
+        android:layout_width="102dp"
         android:layout_height="33dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         android:ems="10"
         android:hint="enter deadline date"
         android:inputType="date"
         android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDeadlineTime"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCompleted"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+    <EditText
+        android:id="@+id/editTextDeadlineTime"
+        android:layout_width="95dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:inputType="datetime"
+        android:text="17-00"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextGrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCompleted"
         tools:text="@tools:sample/date/ddmmyy" />

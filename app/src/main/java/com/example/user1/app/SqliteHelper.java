@@ -16,7 +16,7 @@ import java.util.List;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "data1.db";
+    public static final String DATABASE_NAME = "database.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 1;
@@ -41,6 +41,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String KEY_TITLE = "title";
     public static final String KEY_ISSUE_DATE = "issue_date";
     public static final String KEY_DEADLINE_DATE = "deadline_date";
+    public static final String KEY_DEADLINE_TIME = "deadline_time";
     public static final String KEY_WEIGHTING = "weighting";
     public static final String KEY_RESOURCES = "resources";
     public static final String KEY_COMPLETED = "completed";
@@ -65,6 +66,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
             + KEY_TITLE + " TEXT, "
             + KEY_ISSUE_DATE + " TEXT, "
             + KEY_DEADLINE_DATE + " TEXT, "
+            + KEY_DEADLINE_TIME + " TEXT,"
             + KEY_WEIGHTING + " TEXT, "
             + KEY_RESOURCES + " TEXT, "
             + KEY_GRADE + " TEXT, "
@@ -170,6 +172,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_TITLE, assignment.getTitle());
         values.put(KEY_ISSUE_DATE, assignment.getIssue());
         values.put(KEY_DEADLINE_DATE, assignment.getDeadline());
+        values.put(KEY_DEADLINE_TIME, assignment.getTime());
         values.put(KEY_WEIGHTING, assignment.getWeighting());
         values.put(KEY_COMPLETED, "No");
 
@@ -182,7 +185,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public boolean isAssignmentExists(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ASSIGNMENTS,// Selecting Table
-                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING}, //KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED},//Selecting columns want to query
+                new String[]{KEY_ID, KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_DEADLINE_TIME, KEY_WEIGHTING}, //KEY_RESOURCES, KEY_GRADE, KEY_COMPLETED},//Selecting columns want to query
                 KEY_TITLE + "=?",
                 new String[]{title},//Where clause
                 null, null, null);
@@ -214,7 +217,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         Assignment listItems = new Assignment();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_WEIGHTING, KEY_GRADE};
+        String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_DEADLINE_TIME, KEY_WEIGHTING, KEY_GRADE};
         String selection = KEY_TITLE + " = ?";
         String [] selectionArgs = { title };
 
@@ -229,9 +232,10 @@ public class SqliteHelper extends SQLiteOpenHelper {
             listItems.setTitle(cursor.getString(2));
             listItems.setIssue(cursor.getString(3));
             listItems.setDeadline(cursor.getString(4));
-            listItems.setWeighting(cursor.getString(5));
+            listItems.setTime(cursor.getString(5));
+            listItems.setWeighting(cursor.getString(6));
             //listItems.setResources(cursor.getString(7));
-            listItems.setGrade(cursor.getString(6));
+            listItems.setGrade(cursor.getString(7));
             //listItems.setCompleted(cursor.getString(9));
         }
         db.close();
@@ -261,6 +265,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_TITLE, assignment.getTitle());
         //values.put(KEY_ISSUE_DATE, assignment.getIssue());
         values.put(KEY_DEADLINE_DATE, assignment.getDeadline());
+        values.put(KEY_DEADLINE_TIME, assignment.getTime());
         values.put(KEY_WEIGHTING, assignment.getWeighting());
         //values.put(KEY_GRADE, assignment.getGrade());
         //values.put(KEY_COMPLETED, "No");

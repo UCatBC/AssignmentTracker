@@ -10,6 +10,9 @@ public class Assignment {
     public String resources;
     public String completed;
     public String grade;
+    public String time;
+    public String notesText;
+    public String notesImage;
 
     public void setModule(String pModule) {
         this.module = pModule;
@@ -50,6 +53,19 @@ public class Assignment {
     public String getGrade(){
         return grade;
     }
+
+    public void setTime(String pTime){ this.time = pTime;}
+
+    public String getTime() {return time; }
+
+    public void setNotesText(String pNotesText){ this.notesText = pNotesText;}
+
+    public String getNotesText() {return notesText; }
+
+    public void setNotesImage(String pNotesImage){ this.notesImage = pNotesImage;}
+
+    public String getNotesImage() {return notesImage; }
+
 
     public void setResources(String pResources) {
         this.resources = pResources;

@@ -19,7 +19,7 @@ import java.util.Date;
 public class EditCurrentAssignment extends AppCompatActivity {
 
     Spinner dropdown, dropdown1;
-    EditText title, module, deadline, weighting, issue;
+    EditText title, module, deadline, weighting, issue, deadlineTime;
     SqliteHelper db;
     Button delete, update, export;
     String selected;
@@ -32,6 +32,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
         module = (EditText)findViewById(R.id.editTextModule);
         issue = (EditText)findViewById(R.id.editTextCompleted);
         deadline = (EditText)findViewById(R.id.editTextDeadline);
+        deadlineTime = (EditText)findViewById(R.id.editTextDeadlineTime2);
         weighting = (EditText)findViewById(R.id.editTextGrade);
         delete = (Button)findViewById(R.id.buttonDelete);
         update = (Button)findViewById(R.id.update);
@@ -76,6 +77,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
         issue.setText(view.getIssue());
         module.setText(view.getModule());
         deadline.setText(view.getDeadline());
+        deadlineTime.setText(view.getTime());
         weighting.setText(view.getWeighting());
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -110,6 +112,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
                 view.setModule(module.getText().toString());
                 view.setTitle(title.getText().toString());
                 view.setDeadline(deadline.getText().toString());
+                view.setTime(deadlineTime.getText().toString());
                 view.setWeighting(weighting.getText().toString());
                 db.updateCurrentAssignment(view);
             }
