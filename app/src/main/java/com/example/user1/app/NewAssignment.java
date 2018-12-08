@@ -166,15 +166,22 @@ public class NewAssignment extends AppCompatActivity {
                                       Toast.makeText(NewAssignment.this, "Alarm Scheduled for " + time, Toast.LENGTH_LONG).show();*/
 
                        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-                       Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                       Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
                        notificationIntent.addCategory("android.intent.category.DEFAULT");
-
-                       PendingIntent broadcast = PendingIntent.getBroadcast(NewAssignment.this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                       //Calendar cal = Calendar.getInstance();
-                       //cal.add(Calendar.SECOND, 15);
-                       Long time = calEnd.getTimeInMillis()-24*60*1000;
+                       PendingIntent broadcast = PendingIntent.getBroadcast(NewAssignment.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-24*60*60*1000, broadcast);
+
+                       AlarmManager alarmManager1 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                       Intent notificationIntent1 = new Intent(getApplicationContext(), AlarmReciever2.class);
+                       notificationIntent1.addCategory("android.intent.category.DEFAULT");
+                       PendingIntent broadcast1 = PendingIntent.getBroadcast(NewAssignment.this, 0, notificationIntent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                       alarmManager1.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-48*60*60*1000, broadcast1);
+
+                       AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                       Intent notificationIntent2 = new Intent(getApplicationContext(), AlarmReciever3.class);
+                       notificationIntent2.addCategory("android.intent.category.DEFAULT");
+                       PendingIntent broadcast2 = PendingIntent.getBroadcast(NewAssignment.this, 0, notificationIntent2, PendingIntent.FLAG_UPDATE_CURRENT);
+                       alarmManager2.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-168*60*60*1000, broadcast2);
 
                        Intent intent1 = new Intent(Intent.ACTION_INSERT)
                                //.setData(CalendarContract.Events.CONTENT_URI)
