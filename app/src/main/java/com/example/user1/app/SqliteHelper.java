@@ -199,7 +199,27 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public ArrayList<String> getAllAssignments() {
+    public ArrayList<String> getAllAssignments(String completed) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> listItems = new ArrayList<String>();
+
+        String [] columns = {KEY_TITLE, KEY_COMPLETED};
+        String selection = KEY_COMPLETED + " = ?";
+        String [] selectionArgs = { completed };
+
+        Cursor cursor = db.query(TABLE_ASSIGNMENTS, columns, selection, selectionArgs, null, null, null);
+
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            listItems.add(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            cursor.moveToNext();
+        }
+
+        return listItems;
+    }
+
+    public ArrayList<String> getAllCurrentAssignments() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> listItems = new ArrayList<String>();
 
@@ -268,7 +288,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_DEADLINE_TIME, assignment.getTime());
         values.put(KEY_WEIGHTING, assignment.getWeighting());
         //values.put(KEY_GRADE, assignment.getGrade());
-        //values.put(KEY_COMPLETED, "No");
+        values.put(KEY_COMPLETED, assignment.getCompleted());
 
         // insert row
        return db.update(TABLE_ASSIGNMENTS, values, KEY_TITLE +

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -20,6 +21,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
 
     Spinner dropdown, dropdown1;
     EditText title, module, deadline, weighting, issue, deadlineTime;
+    CheckBox completed;
     SqliteHelper db;
     Button delete, update, export;
     String selected;
@@ -36,6 +38,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
         weighting = (EditText)findViewById(R.id.editTextGrade);
         delete = (Button)findViewById(R.id.buttonDelete);
         update = (Button)findViewById(R.id.update);
+        completed = (CheckBox)findViewById(R.id.checkBoxCompleted);
 
         db = new SqliteHelper(this);
 
@@ -114,7 +117,14 @@ public class EditCurrentAssignment extends AppCompatActivity {
                 view.setDeadline(deadline.getText().toString());
                 view.setTime(deadlineTime.getText().toString());
                 view.setWeighting(weighting.getText().toString());
+
+                if(completed.isChecked()){
+                    view.setCompleted("Yes");
+                }
                 db.updateCurrentAssignment(view);
+
+                Intent hello2 = new Intent(getApplicationContext(),CurrentAssignments.class);
+                startActivity(hello2);
             }
         });
 

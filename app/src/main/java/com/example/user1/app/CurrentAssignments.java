@@ -32,7 +32,7 @@ public class CurrentAssignments extends AppCompatActivity {
 
 
         SqliteHelper db = new SqliteHelper(this);
-        assignmentList = db.getAllAssignments();
+        assignmentList = db.getAllAssignments("No");
 
         listAdapter = new ArrayAdapter<String>(this, R.layout.list_row,R.id.label, assignmentList);
         ListView lv = (ListView)findViewById(R.id.assignment_list);

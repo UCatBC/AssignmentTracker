@@ -28,7 +28,7 @@ public class ExpiredAssignments extends AppCompatActivity {
         setContentView(R.layout.activity_expired_assignments);
 
         SqliteHelper db = new SqliteHelper(this);
-        assignmentList = db.getAllAssignments();
+        assignmentList = db.getAllAssignments("Yes");
 
         listAdapter = new ArrayAdapter<String>(this, R.layout.list_row,R.id.label, assignmentList);
         ListView lv = (ListView)findViewById(R.id.assignment_list);
