@@ -157,16 +157,24 @@ public class NewAssignment extends AppCompatActivity {
 
                        //Long time = new GregorianCalendar().getTimeInMillis()+5*1000;
                        
-                       Long time = calEnd.getTimeInMillis()-24*1000;
+                       /*Long time = calEnd.getTimeInMillis()-24*1000;
                        /*Long alarm2 = calEnd.getTimeInMillis()-60*60*60*1000;
-                       Long alarm3 = calEnd.getTimeInMillis()-170*60*60*1000;  */
+                       Long alarm3 = calEnd.getTimeInMillis()-170*60*60*1000;
                        Intent intentAlarm = new Intent(NewAssignment.this, AlarmReciever.class);
                        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                           alarmManager.set(AlarmManager.RTC_WAKEUP,time, PendingIntent.getBroadcast(NewAssignment.this,1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
-                                      Toast.makeText(NewAssignment.this, "Alarm Scheduled for " + time, Toast.LENGTH_LONG).show();
+                                      Toast.makeText(NewAssignment.this, "Alarm Scheduled for " + time, Toast.LENGTH_LONG).show();*/
 
+                       AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
+                       Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                       notificationIntent.addCategory("android.intent.category.DEFAULT");
 
+                       PendingIntent broadcast = PendingIntent.getBroadcast(NewAssignment.this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                       //Calendar cal = Calendar.getInstance();
+                       //cal.add(Calendar.SECOND, 15);
+                       Long time = calEnd.getTimeInMillis()-24*60*1000;
+                       alarmManager.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-24*60*60*1000, broadcast);
 
                        Intent intent1 = new Intent(Intent.ACTION_INSERT)
                                //.setData(CalendarContract.Events.CONTENT_URI)
