@@ -25,7 +25,8 @@ public class EditCurrentAssignment extends AppCompatActivity {
     SqliteHelper db;
     Button delete, update, export;
     String selected;
-    Date formatter;
+    SimpleDateFormat formatter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +42,6 @@ public class EditCurrentAssignment extends AppCompatActivity {
         completed = (CheckBox)findViewById(R.id.checkBoxCompleted);
 
         db = new SqliteHelper(this);
-
-        //for type
-        /*dropdown = findViewById(R.id.editTextType);
-        String[] items = new String[]{"Assignment", "Task"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);*/
-
 
         //for resources
         dropdown1 = findViewById(R.id.editTextType1);
@@ -114,12 +108,18 @@ public class EditCurrentAssignment extends AppCompatActivity {
                 view.setType(selected);
                 view.setModule(module.getText().toString());
                 view.setTitle(title.getText().toString());
-                view.setDeadline(deadline.getText().toString());
                 view.setTime(deadlineTime.getText().toString());
                 view.setWeighting(weighting.getText().toString());
 
                 if(completed.isChecked()){
                     view.setCompleted("Yes");
+                    Date today = Calendar.getInstance().getTime();
+                    formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    String date = formatter.format(today);
+                    view.setDeadline(date);
+                }
+                else {
+                    view.setDeadline(deadline.getText().toString());
                 }
                 db.updateCurrentAssignment(view);
 

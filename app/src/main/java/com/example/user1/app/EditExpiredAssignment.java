@@ -36,7 +36,7 @@ public class EditExpiredAssignment extends AppCompatActivity {
         type.setText(view.getType());
         module.setText(view.getModule());
         title.setText(view.getTitle());
-        //completed.setText(view.getCompleted()); //not correct getter
+        completed.setText(view.getDeadline()); //not correct getter
         weighting.setText(view.getWeighting());
         grade.setText(view.getGrade());
 

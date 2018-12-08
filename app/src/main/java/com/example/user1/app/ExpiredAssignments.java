@@ -38,8 +38,7 @@ public class ExpiredAssignments extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //insert = (TextView) view.findViewById(R.id.label);
-                //String insert1 = insert.getText().toString();
+
                 String insert1 = assignmentList.get(position);
 
                 Intent assignment = new Intent(getApplicationContext(), EditExpiredAssignment.class);

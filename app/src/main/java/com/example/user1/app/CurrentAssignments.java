@@ -42,8 +42,7 @@ public class CurrentAssignments extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //insert = (TextView) view.findViewById(R.id.label);
-                //String insert1 = insert.getText().toString();
+
                 String insert1 = assignmentList.get(position);
 
                 Intent assignment = new Intent(getApplicationContext(), EditCurrentAssignment.class);
@@ -53,18 +52,6 @@ public class CurrentAssignments extends AppCompatActivity {
             }
         });
     }
-
-    /*public void viewAssignment (View view) {
-        String button_text;
-        button_text = ((Button)view).getText().toString();
-        //String name = listAdapter.getItem(0).getText.toString();
-        String insert1 = insert.getText().toString();
-
-        Intent assignment = new Intent(this, EditCurrentAssignment.class);
-        assignment.putExtra("TITLE", insert1);
-
-        startActivity(assignment);
-    }*/
 
     public void page1change(View View)
     {
