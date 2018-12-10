@@ -24,7 +24,7 @@ public class NotificationReciever extends BroadcastReceiver{
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-        Notification notification = builder.setContentTitle("ASSIGNMENT DUE")
+        Notification notification = builder.setContentTitle("ASSIGNMENT")
                 .setContentText("You have are close!!!")
                 .setTicker("New Message Alert!")
                 .setSmallIcon(R.mipmap.unilogo)

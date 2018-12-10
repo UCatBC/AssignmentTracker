@@ -165,18 +165,21 @@ public class NewAssignment extends AppCompatActivity {
                           alarmManager.set(AlarmManager.RTC_WAKEUP,time, PendingIntent.getBroadcast(NewAssignment.this,1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
                                       Toast.makeText(NewAssignment.this, "Alarm Scheduled for " + time, Toast.LENGTH_LONG).show();*/
 
+                       //ALARM FOR DAY BEFORE
                        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                        Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
                        notificationIntent.addCategory("android.intent.category.DEFAULT");
                        PendingIntent broadcast = PendingIntent.getBroadcast(NewAssignment.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-24*60*60*1000, broadcast);
 
+                       //ALARM FOR TWO DAYS BEFORE
                        AlarmManager alarmManager1 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                        Intent notificationIntent1 = new Intent(getApplicationContext(), AlarmReciever2.class);
                        notificationIntent1.addCategory("android.intent.category.DEFAULT");
                        PendingIntent broadcast1 = PendingIntent.getBroadcast(NewAssignment.this, 0, notificationIntent1, PendingIntent.FLAG_UPDATE_CURRENT);
                        alarmManager1.setExact(AlarmManager.RTC_WAKEUP, calEnd.getTimeInMillis()-48*60*60*1000, broadcast1);
 
+                       //ALARM FOR A WEEK BEFORE
                        AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                        Intent notificationIntent2 = new Intent(getApplicationContext(), AlarmReciever3.class);
                        notificationIntent2.addCategory("android.intent.category.DEFAULT");

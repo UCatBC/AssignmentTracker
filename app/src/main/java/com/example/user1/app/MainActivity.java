@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
         if(atHome) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            Intent notificationIntent = new Intent(getApplicationContext(), NotificationReciever.class);
             notificationIntent.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
         else if(atUni) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            Intent notificationIntent = new Intent(getApplicationContext(), NotificationReciever.class);
             notificationIntent.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
         else if(atLibrary) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            Intent notificationIntent = new Intent(getApplicationContext(), NotificationReciever.class);
             notificationIntent.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
