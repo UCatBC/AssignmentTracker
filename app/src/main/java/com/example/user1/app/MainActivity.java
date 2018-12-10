@@ -1,9 +1,26 @@
 package com.example.user1.app;
 
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -11,8 +28,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.lang.ref.WeakReference;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements LocationListener{
+
+    private LocationManager locationManager;
+    HashMap<String,Double[]> locationList;
 
     //Declaration EditTexts
     EditText editTextEmail;
@@ -33,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sqliteHelper = new SqliteHelper(this);
+
+        locationList= new HashMap<>();
+        addLocations(locationList);
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(MainActivity.this, "First enable UPDATE_LOCATION ACCESS in settings.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5 * 60 * 1000,1000, this);
         initCreateAccountTextView();
         initViews();
 
@@ -69,6 +111,102 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void addLocations(HashMap<String, Double[]> locationList) {
+
+        locationList.put("Home",new Double[]{53.7815,-2.3883});
+        locationList.put("Library",new Double[]{53.7815,-2.3883});
+        locationList.put("University", new Double[]{53.7815,-2.3883});
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        double longitude1 = location.getLongitude();
+        double latitude1 = location.getLatitude();
+
+        float[] results = new float[1];
+        Location.distanceBetween(53.7815, -2.3883, latitude1, longitude1, results);
+        float distanceInMeters = results[0];
+        boolean atHome = distanceInMeters < 500;
+
+        float[] results1 = new float[1];
+        Location.distanceBetween(53.7486, -2.48974, latitude1, longitude1, results);
+        float distanceInMeters1 = results1[0];
+        boolean atUni = distanceInMeters1 < 500;
+
+        float[] results2 = new float[1];
+        Location.distanceBetween(53.7497, -2.48503, latitude1, longitude1, results);
+        float distanceInMeters2 = results2[0];
+        boolean atLibrary = distanceInMeters2 < 500;
+
+
+
+        if(atHome) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            notificationIntent.addCategory("android.intent.category.DEFAULT");
+            PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, new GregorianCalendar().getTimeInMillis() * 60, broadcast);
+                Toast.makeText(MainActivity.this, "You are close to home", Toast.LENGTH_LONG).show();
+            //}
+
+            longitude1 = 0.0;
+            latitude1 = 0.0;
+        }
+
+        else if(atUni) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            notificationIntent.addCategory("android.intent.category.DEFAULT");
+            PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, new GregorianCalendar().getTimeInMillis() * 60, broadcast);
+            Toast.makeText(MainActivity.this, "You are close to university", Toast.LENGTH_LONG).show();
+            //}
+
+            longitude1 = 0.0;
+            latitude1 = 0.0;
+        }
+
+        else if(atLibrary) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent notificationIntent = new Intent(getApplicationContext(), AlarmReciever.class);
+            notificationIntent.addCategory("android.intent.category.DEFAULT");
+            PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, new GregorianCalendar().getTimeInMillis() * 60, broadcast);
+            Toast.makeText(MainActivity.this, "You are close to Library", Toast.LENGTH_LONG).show();
+            //}
+
+            longitude1 = 0.0;
+            latitude1 = 0.0;
+        }
+
+
+    }
+    @Override
+    public void onProviderDisabled(String provider) {
+
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(intent);
+        Toast.makeText(getBaseContext(), "Gps is turned off!! ",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+        Toast.makeText(getBaseContext(), "Gps is turned on!! ",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
 
     }
 

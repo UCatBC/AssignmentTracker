@@ -36,6 +36,13 @@
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:text="TextView"
+            android:visibility="invisible" />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutPassword"
             android:layout_width="match_parent"
