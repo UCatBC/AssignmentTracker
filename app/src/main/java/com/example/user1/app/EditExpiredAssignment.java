@@ -3,15 +3,19 @@ package com.example.user1.app;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class EditExpiredAssignment extends AppCompatActivity {
 
     EditText type, module, title, completed, weighting, grade;
     SqliteHelper db;
     Button delete, update;
+    ImageView infoType, infoTitle, infoModule, infoWeighting, infoGrade, infoNotes, infoCompleted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,16 @@ public class EditExpiredAssignment extends AppCompatActivity {
         grade = (EditText)findViewById(R.id.editTextGrade);
         delete = (Button)findViewById(R.id.buttonDelete);
         update = (Button)findViewById(R.id.buttonUpdate);
+        infoType = (ImageView)findViewById(R.id.imageViewInfo15);
+        infoModule = (ImageView)findViewById(R.id.imageViewInfo16);
+        infoTitle = (ImageView)findViewById(R.id.imageViewInfo17);
+        infoCompleted = (ImageView)findViewById(R.id.imageViewInfo18);
+        infoWeighting = (ImageView)findViewById(R.id.imageViewInfo19);
+        infoGrade = (ImageView)findViewById(R.id.imageViewInfo20);
+        infoNotes = (ImageView)findViewById(R.id.imageViewInfo21);
+
+
+
 
         db = new SqliteHelper(this);
 
@@ -60,6 +74,82 @@ public class EditExpiredAssignment extends AppCompatActivity {
 
                 Intent hello2 = new Intent(getApplicationContext(),ExpiredAssignments.class);
                 startActivity(hello2);
+            }
+        });
+
+        infoType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the type of the work completed", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 400);
+                toast.show();
+
+            }
+        });
+
+        infoModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the module of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 550);
+                toast.show();
+
+            }
+        });
+
+        infoTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the title of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 700);
+                toast.show();
+
+            }
+        });
+
+        infoCompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the date the assignment/task was completed", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 850);
+                toast.show();
+
+            }
+        });
+        infoWeighting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the weighting of the assignment/grade", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1000);
+                toast.show();
+
+            }
+        });
+
+        infoGrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter grade you received for this assignment", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1150);
+                toast.show();
+
+            }
+        });
+
+        infoNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Click to view notes that were related to this assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1300);
+                toast.show();
+
             }
         });
 

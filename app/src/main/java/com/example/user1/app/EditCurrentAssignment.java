@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +29,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
     Button delete, update, export;
     String selected;
     SimpleDateFormat formatter;
+    ImageView infoType, infoTitle, infoModule, infoIssue, infoDeadline, infoWeighting, infoResources, infoNotes, infoCompleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,15 @@ public class EditCurrentAssignment extends AppCompatActivity {
         delete = (Button)findViewById(R.id.buttonDelete);
         update = (Button)findViewById(R.id.update);
         completed = (CheckBox)findViewById(R.id.checkBoxCompleted);
+        infoTitle = (ImageView)findViewById(R.id.imageViewInfo9);
+        infoType = (ImageView)findViewById(R.id.imageViewInfo7);
+        infoModule = (ImageView)findViewById(R.id.imageViewInfo8);
+        infoIssue = (ImageView)findViewById(R.id.imageViewInfo10);
+        infoDeadline = (ImageView)findViewById(R.id.imageViewInfo11);
+        infoWeighting = (ImageView)findViewById(R.id.imageViewInfo12);
+        infoResources = (ImageView)findViewById(R.id.imageViewInfo13);
+        infoNotes = (ImageView)findViewById(R.id.imageViewInfo14);
+        infoCompleted = (ImageView)findViewById(R.id.imageViewInfo15);
 
         db = new SqliteHelper(this);
 
@@ -125,6 +138,102 @@ public class EditCurrentAssignment extends AppCompatActivity {
 
                 Intent hello2 = new Intent(getApplicationContext(),CurrentAssignments.class);
                 startActivity(hello2);
+            }
+        });
+
+        infoType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Choose type of work", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 400);
+                toast.show();
+
+            }
+        });
+
+        infoModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter which module the assignment/task is for", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 550);
+                toast.show();
+
+            }
+        });
+
+        infoTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter the title of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 700);
+                toast.show();
+
+            }
+        });
+
+        infoIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the issue date of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 850);
+                toast.show();
+
+            }
+        });
+        infoDeadline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter deadline date and time in this format (2018-12-12) (17-00)", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1000);
+                toast.show();
+
+            }
+        });
+
+        infoWeighting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter weight of assignment/task if applicable in numbers", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1150);
+                toast.show();
+
+            }
+        });
+
+        infoResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Choose which resources needed for the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1300);
+                toast.show();
+
+            }
+        });
+        infoNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Click to view notes related to assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1450);
+                toast.show();
+
+            }
+        });
+        infoCompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Click to mark as completed - WARNING IRREVERSIBLE", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 50, 1600);
+                toast.show();
+
             }
         });
 

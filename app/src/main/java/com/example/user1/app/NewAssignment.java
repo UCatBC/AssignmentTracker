@@ -13,11 +13,14 @@ import android.provider.CalendarContract;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +43,7 @@ public class NewAssignment extends AppCompatActivity {
     EditText editTextWeighting;
     EditText editTextDeadlineTime;
     SimpleDateFormat formatter;
+    ImageView infoType, infoTitle, infoModule, infoIssue, infoDeadline, infoWeighting, infoResources;
 
     Button buttonCreate;
 
@@ -61,6 +65,15 @@ public class NewAssignment extends AppCompatActivity {
         editTextDeadline = (EditText)findViewById(R.id.editTextDeadline);
         editTextDeadlineTime = (EditText)findViewById(R.id.editTextDeadlineTime);
         editTextWeighting = (EditText)findViewById(R.id.editTextGrade);
+        infoTitle = (ImageView)findViewById(R.id.imageViewInfo3);
+        infoType = (ImageView)findViewById(R.id.imageViewInfo1);
+        infoModule = (ImageView)findViewById(R.id.imageViewInfo2);
+        infoIssue = (ImageView)findViewById(R.id.imageViewInfo4);
+        infoDeadline = (ImageView)findViewById(R.id.imageViewInfo5);
+        infoWeighting = (ImageView)findViewById(R.id.imageViewInfo6);
+        infoResources = (ImageView)findViewById(R.id.imageViewInfo7);
+
+
 
 
         Date today = Calendar.getInstance().getTime();
@@ -208,12 +221,88 @@ public class NewAssignment extends AppCompatActivity {
                     }else {
 
                         //Assignment exists with assignment input provided so show error assignment already exist
-                        Snackbar.make(buttonCreate, "Assignment already exists with same title ", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(buttonCreate, "Assignment not created!", Snackbar.LENGTH_LONG).show();
                     }
 
 
                 }
 
+        });
+
+        infoType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Choose type of work", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 400);
+                toast.show();
+
+            }
+        });
+
+        infoModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter which module the assignment/task is for", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 550);
+                toast.show();
+
+            }
+        });
+
+        infoTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter the title of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 700);
+                toast.show();
+
+            }
+        });
+
+        infoIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "This is the issue date of the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 850);
+                toast.show();
+
+            }
+        });
+        infoDeadline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter deadline date and time in this format (2018-12-12) (17-00)", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1000);
+                toast.show();
+
+            }
+        });
+
+        infoWeighting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Enter weight of assignment/task if applicable in numbers", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1150);
+                toast.show();
+
+            }
+        });
+
+        infoResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Choose which resources needed for the assignment/task", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.LEFT, 50, 1300);
+                toast.show();
+
+            }
         });
 
 
