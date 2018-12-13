@@ -181,9 +181,11 @@ public class EditExpiredAssignment extends AppCompatActivity {
     public void viewChange(View View) {
         String button_text;
         button_text = ((Button) View).getText().toString();
+        String notesTitle = title.getText().toString();
 
         if (button_text.equals("View")) {
             Intent hello2 = new Intent(this, Notes.class);
+            hello2.putExtra("NOTES", notesTitle);
             startActivity(hello2);
         }
     }

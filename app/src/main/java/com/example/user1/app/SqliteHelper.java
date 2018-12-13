@@ -175,7 +175,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_DEADLINE_TIME, assignment.getTime());
         values.put(KEY_WEIGHTING, assignment.getWeighting());
         values.put(KEY_COMPLETED, "No");
-        values.put(KEY_NOTES_TEXT, "Talah rulez");
+        values.put(KEY_NOTES_TEXT, "");
         values.put(KEY_GRADE, "");
 
         // insert row
