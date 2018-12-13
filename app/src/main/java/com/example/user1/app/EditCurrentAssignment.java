@@ -133,6 +133,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
                     view.setDeadline(date);
                 }
                 else {
+                    view.setCompleted("No");
                     view.setDeadline(deadline.getText().toString());
                 }
                 db.updateCurrentAssignment(view);
