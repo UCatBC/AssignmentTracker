@@ -70,7 +70,7 @@
         android:layout_height="23dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="91dp"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/buttonView"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/imageViewInfo20"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
@@ -263,7 +263,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.705"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonView" />
 
     <Button
         android:id="@+id/buttonUpdate"
@@ -274,7 +274,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.343"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonView" />
 
     <Button
         android:id="@+id/expired"
@@ -289,7 +289,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/current"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/buttonView"
         app:layout_constraintVertical_bias="0.78" />
 
 
@@ -338,11 +338,12 @@
         android:focusable="false"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonView"
         android:layout_width="208dp"
         android:layout_height="42dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="16dp"
+        android:onClick="viewChange"
         android:text="View"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGrade" />

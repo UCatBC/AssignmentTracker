@@ -20,12 +20,14 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.media.action.IMAGE_CAPTURE" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name=".NotificationActivity" />
         <activity
@@ -36,17 +38,20 @@
         <activity android:name=".CurrentAssignments" />
         <activity android:name=".ExpiredAssignments" />
         <activity android:name=".EditCurrentAssignment" />
-        <activity android:name=".EditExpiredAssignment"></activity>
+        <activity android:name=".EditExpiredAssignment" />
 
-        <receiver android:name=".NotificationReciever"/>
-        <receiver android:name=".AlarmReciever3"/>
-        <receiver android:name=".AlarmReciever2"/>
+        <receiver android:name=".NotificationReciever" />
+        <receiver android:name=".AlarmReciever3" />
+        <receiver android:name=".AlarmReciever2" />
         <receiver android:name=".AlarmReciever">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".Notes"></activity>
     </application>
 
 </manifest>

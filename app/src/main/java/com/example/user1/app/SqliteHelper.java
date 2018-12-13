@@ -16,7 +16,7 @@ import java.util.List;
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
-    public static final String DATABASE_NAME = "database.db";
+    public static final String DATABASE_NAME = "databasenew.db";
 
     //DATABASE VERSION
     public static final int DATABASE_VERSION = 1;
@@ -175,6 +175,8 @@ public class SqliteHelper extends SQLiteOpenHelper {
         values.put(KEY_DEADLINE_TIME, assignment.getTime());
         values.put(KEY_WEIGHTING, assignment.getWeighting());
         values.put(KEY_COMPLETED, "No");
+        values.put(KEY_NOTES_TEXT, "Talah rulez");
+        values.put(KEY_GRADE, "");
 
         // insert row
         long result = db.insert(TABLE_ASSIGNMENTS, null, values);
@@ -237,7 +239,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         Assignment listItems = new Assignment();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_DEADLINE_TIME, KEY_WEIGHTING, KEY_GRADE};
+        String [] columns = {KEY_TYPE, KEY_MODULE, KEY_TITLE, KEY_ISSUE_DATE, KEY_DEADLINE_DATE, KEY_DEADLINE_TIME, KEY_WEIGHTING, KEY_GRADE, KEY_NOTES_TEXT};
         String selection = KEY_TITLE + " = ?";
         String [] selectionArgs = { title };
 
@@ -256,6 +258,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
             listItems.setWeighting(cursor.getString(6));
             //listItems.setResources(cursor.getString(7));
             listItems.setGrade(cursor.getString(7));
+            listItems.setNotesText(cursor.getString(8));
             //listItems.setCompleted(cursor.getString(9));
         }
         db.close();
@@ -307,5 +310,41 @@ public class SqliteHelper extends SQLiteOpenHelper {
         // insert row
         return db.update(TABLE_ASSIGNMENTS, values, KEY_TITLE +
                 " = ?", new String[] { String.valueOf(assignment.getTitle()) });
+    }
+
+    public long updateNotes(Assignment assignment) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+        values.put(KEY_NOTES_TEXT, assignment.getNotesText());
+
+        // insert row
+        return db.update(TABLE_ASSIGNMENTS, values, KEY_TITLE +
+                " = ?", new String[] { String.valueOf(assignment.getTitle()) });
+    }
+
+    public Assignment getNotes(String title) {
+        Assignment listItems = new Assignment();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String [] columns = {KEY_TITLE, KEY_NOTES_TEXT};
+        String selection = KEY_TITLE + " = ?";
+        String [] selectionArgs = { title };
+
+        Cursor cursor = db.query(TABLE_ASSIGNMENTS, columns, selection, selectionArgs, null, null, null);
+
+        if(null != cursor) {
+
+            cursor.moveToFirst();
+
+            listItems.setTitle(cursor.getString(0));
+            listItems.setNotesText(cursor.getString(1));
+        }
+        db.close();
+
+        return listItems;
     }
 }

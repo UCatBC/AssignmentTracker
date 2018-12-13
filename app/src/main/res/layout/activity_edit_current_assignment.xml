@@ -420,6 +420,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="27dp"
         android:layout_marginBottom="27dp"
+        android:onClick="viewChange"
         android:text="View"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxCompleted"
         app:layout_constraintEnd_toEndOf="parent"
