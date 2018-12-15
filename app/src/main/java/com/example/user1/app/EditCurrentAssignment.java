@@ -26,7 +26,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
     EditText title, module, deadline, weighting, issue, deadlineTime;
     CheckBox completed;
     SqliteHelper db;
-    Button delete, update, export;
+    Button delete, update, view;
     String selected;
     SimpleDateFormat formatter;
     ImageView infoType, infoTitle, infoModule, infoIssue, infoDeadline, infoWeighting, infoResources, infoNotes, infoCompleted;
@@ -53,6 +53,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
         infoResources = (ImageView)findViewById(R.id.imageViewInfo13);
         infoNotes = (ImageView)findViewById(R.id.imageViewInfo14);
         infoCompleted = (ImageView)findViewById(R.id.imageViewInfo15);
+        view = (Button)findViewById(R.id.button2);
 
         db = new SqliteHelper(this);
 
@@ -132,6 +133,7 @@ public class EditCurrentAssignment extends AppCompatActivity {
                     view.setDeadline(date);
                 }
                 else {
+                    view.setCompleted("No");
                     view.setDeadline(deadline.getText().toString());
                 }
                 db.updateCurrentAssignment(view);
@@ -260,5 +262,18 @@ public class EditCurrentAssignment extends AppCompatActivity {
             Intent hello2 = new Intent(this,ExpiredAssignments.class);
             startActivity(hello2);
         }
+    }
+
+    public void viewChange(View View) {
+        String button_text;
+        button_text = ((Button) View).getText().toString();
+        String extra = title.getText().toString();
+
+        if (button_text.equals("View")) {
+            Intent hello2 = new Intent(getApplicationContext(), Notes.class);
+            hello2.putExtra("NOTES", extra);
+            startActivity(hello2);
+        }
+
     }
 }

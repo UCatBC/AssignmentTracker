@@ -14,7 +14,7 @@ public class EditExpiredAssignment extends AppCompatActivity {
 
     EditText type, module, title, completed, weighting, grade;
     SqliteHelper db;
-    Button delete, update;
+    Button delete, update, view;
     ImageView infoType, infoTitle, infoModule, infoWeighting, infoGrade, infoNotes, infoCompleted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class EditExpiredAssignment extends AppCompatActivity {
         infoWeighting = (ImageView)findViewById(R.id.imageViewInfo19);
         infoGrade = (ImageView)findViewById(R.id.imageViewInfo20);
         infoNotes = (ImageView)findViewById(R.id.imageViewInfo21);
+        view = (Button)findViewById(R.id.buttonView);
 
 
 
@@ -173,6 +174,18 @@ public class EditExpiredAssignment extends AppCompatActivity {
         else if (button_text.equals("Expired"))
         {
             Intent hello2 = new Intent(this,ExpiredAssignments.class);
+            startActivity(hello2);
+        }
+    }
+
+    public void viewChange(View View) {
+        String button_text;
+        button_text = ((Button) View).getText().toString();
+        String notesTitle = title.getText().toString();
+
+        if (button_text.equals("View")) {
+            Intent hello2 = new Intent(this, Notes.class);
+            hello2.putExtra("NOTES", notesTitle);
             startActivity(hello2);
         }
     }
