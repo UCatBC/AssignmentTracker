@@ -39,8 +39,6 @@
         <activity android:name=".EditExpiredAssignment"></activity>
 
         <receiver android:name=".NotificationReciever"/>
-        <receiver android:name=".AlarmReciever3"/>
-        <receiver android:name=".AlarmReciever2"/>
         <receiver android:name=".AlarmReciever">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />

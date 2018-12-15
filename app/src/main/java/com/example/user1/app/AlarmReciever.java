@@ -16,6 +16,9 @@ public class AlarmReciever extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         Intent notificationIntent = new Intent(context, NotificationActivity.class);
 
+        String title = intent.getStringExtra("TITLE");
+        String date = intent.getStringExtra("DATE");
+
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(NotificationActivity.class);
         stackBuilder.addNextIntent(notificationIntent);
@@ -24,8 +27,8 @@ public class AlarmReciever extends BroadcastReceiver{
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-        Notification notification = builder.setContentTitle("ASSIGNMENT DUE")
-                .setContentText("You have an assignment due tomorrow!!!")
+        Notification notification = builder.setContentTitle(title + " DUE")
+                .setContentText("You have an assignment due " + date)
                 .setTicker("New Message Alert!")
                 .setSmallIcon(R.mipmap.unilogo)
                 .setContentIntent(pendingIntent).build();
